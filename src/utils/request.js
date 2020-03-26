@@ -1,7 +1,7 @@
 import fetch from 'dva/fetch';
 import { stringify } from 'qs';
 import URL from "./url";
-import { message } from "antd";
+import { notification } from "antd";
 
 function parseJSON(response) {
   return response.json();
@@ -10,8 +10,6 @@ function parseJSON(response) {
 function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
     return response;
-  } else {
-    message.error('错误提示：' + response.statusText);
   }
 
   const error = new Error(response.statusText);
@@ -21,7 +19,10 @@ function checkStatus(response) {
 
 function checkCode(response) {
   if (parseInt(response.meta.code, 10) !== 200) {
-    message.error('错误提示：' + response.meta.message);
+    notification.error({
+      message: '错误提示：',
+      description: response.meta.message
+    });
     response.success = false;
   } else {
     response.success = true;
@@ -72,9 +73,15 @@ export default function request(url, options) {
       err = err.toString();
       console.log(err);
       if (err.indexOf('requestTimeout') > -1) {
-        message.error('请求超时！');
+        notification.error({
+          message: '请求超时！',
+          description: '请刷新重试！'
+        });
       } else {
-        message.error(err);
+        notification.error({
+          message: '错误提示：',
+          description: err
+        });
       }
       return err;
     });
