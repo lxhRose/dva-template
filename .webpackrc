@@ -1,0 +1,18 @@
+{
+  "disableCSSModules": true,
+  "extraBabelPlugins": [
+    ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }]
+  ],
+  "proxy": {
+    "/": {
+    "target": "http://imedstic.cn:8090",
+    "changeOrigin": true
+    }
+  },
+  "manifest": {},
+  "hash": true,
+  "html": {
+    "template": "./src/index.ejs"
+  },
+  "ignoreMomentLocale": true
+}
