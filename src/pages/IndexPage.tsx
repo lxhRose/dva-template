@@ -5,7 +5,7 @@ import './IndexPage.less';
 @connect((state) => ({
 
 }))
-class IndexPage extends React.PureComponent {
+class IndexPage extends React.PureComponent<any, any> {
   render() {
     return (
       <div className="normal">

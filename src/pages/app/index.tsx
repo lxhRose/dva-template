@@ -3,10 +3,14 @@ import { connect } from 'dva';
 import "./index.less";
 import { Spin } from "antd";
 
+interface Props {
+  App: any
+}
+
 @connect((state) => ({
   App: state.App
 }))
-export default class App extends React.PureComponent {
+export default class App extends React.PureComponent<Props, any> {
   constructor(props) {
     super(props);
   }

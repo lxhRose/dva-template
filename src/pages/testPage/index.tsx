@@ -2,10 +2,13 @@ import React from 'react';
 import { connect } from 'dva';
 import './index.less';
 
+interface Props {
+}
+
 @connect((state) => ({
 
 }))
-class TestPage extends React.PureComponent {
+class TestPage extends React.PureComponent<Props, any> {
   render() {
     return (
       <div className="normal">
