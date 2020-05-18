@@ -1,4 +1,5 @@
 import server from "./app-server";
+import { Model } from "dva";
 
 export default {
   namespace: 'App',
@@ -28,4 +29,4 @@ export default {
       };
     }
   },
-};
+} as Model;
