@@ -4,7 +4,7 @@ import "./index.less";
 import { Spin } from "antd";
 
 interface Props {
-  App: any
+  App?: any
 }
 
 @connect((state) => ({

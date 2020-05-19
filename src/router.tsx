@@ -1,6 +1,11 @@
 import React from 'react';
 import { Router, Route, Switch } from 'dva/router';
-import { App, TestPage } from "./pages/output";
+import {
+  App,
+  TestPage
+} from "./pages/output";
+import { ConfigProvider } from 'antd';
+import zhCN from 'antd/lib/locale-provider/zh_CN';
 
 const routerArr = [
   { path: '/', component: TestPage }
@@ -8,15 +13,21 @@ const routerArr = [
 
 function RouterConfig({ history }) {
   return (
-    <Router history={history}>
-      <App>
+    <ConfigProvider locale={zhCN}>
+      <Router history={history}>
         <Switch>
-          {routerArr.map((item, i) => (
-            <Route key={i} path={item.path} exact component={item.component} />
-          ))}
+          <Route path="/" render={(props) => (
+            <App>
+              <Switch>
+                {routerArr.map((item, i) => (
+                  <Route key={i} path={item.path} exact component={item.component} />
+                ))}
+              </Switch>
+            </App>
+          )} />
         </Switch>
-      </App>
-    </Router>
+      </Router>
+    </ConfigProvider>
   );
 }
 
